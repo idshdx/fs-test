@@ -1,0 +1,15 @@
+{
+  "name": "fs-test",
+  "version": "0.0.1",
+  "description": "Full Stack Dev Test",
+  "author": {
+    "name": "Andrei Botez"
+  },
+  "scripts": {
+    "install": "npm install ./be/package.json",
+    "install-all": "npm install ./be/package.json && npm install ./fe/package.json",
+    "start": "node ./be/config/seed.js && node ./be/server.js",
+    "start-no-seed": "node ./be/server.js",
+    "start-fe": "cd ./fe && \"$npm_execpath\" run serve"
+  }
+}
