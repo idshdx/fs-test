@@ -3,5 +3,8 @@ module.exports = {
         rootPath: require('path').normalize(__dirname + '/..'),
         db: 'mongodb://localhost/test'
     },
-    production: {}
+    production: {
+        rootPath: require('path').normalize(__dirname + '/..'),
+        db: 'mongodb://localhost/test'
+    }
 };
