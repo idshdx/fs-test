@@ -80,7 +80,7 @@ router.get('/client', function (req, res, next) {
             .skip(Number(offset))
             .populate('providers')
             .exec(),
-        Client.count(query).exec(),
+        Client.countDocuments(query).exec(),
     ]).then(function (results) {
         const clients = results[0];
         const clientsCount = results[1];
@@ -194,7 +194,7 @@ router.get('/client/:id', function (req, res, next) {
 router.put('/client/:id', function (req, res, next) {
     const id = req.params.id;
 
-    if (! req.body.client) return res.sendStatus(400);
+    if (!req.body.client) return res.sendStatus(400);
 
     Client.findOneAndUpdate({_id: id}, req.body.client, {new: true})
         .then(function (client) {

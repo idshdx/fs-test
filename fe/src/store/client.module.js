@@ -53,6 +53,9 @@ export const actions = {
                 });
         } else {
             return ClientsService.create(state.client)
+                .then(function (client) {
+                    context.commit(CLIENT_ADD, client);
+                })
                 .catch(error => {
                     throw new Error(error);
                 });

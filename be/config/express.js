@@ -4,15 +4,13 @@ const express = require('express'),
     env = process.env.NODE_ENV || 'development',
     config = require('./config')[env],
     methodOverride = require('method-override'),
-    cors = require('cors'),
-    morgan = require('morgan');
+    cors = require('cors');
 
 module.exports = function (app) {
     app.use(express.static(config.rootPath + '/public'));
     app.use(cors());
     app.use(compress());
     app.use(methodOverride());
-    //app.use(bodyParser());
     app.use(bodyParser.urlencoded({extended: false}));
-    //app.use(morgan('dev'));
+    app.use(bodyParser.json());
 };

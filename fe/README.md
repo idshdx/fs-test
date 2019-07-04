@@ -36,7 +36,16 @@ npm run build
 - `src/views` - Vue views
 
 
-MENTION!
+MENTIONS!
+
+###### 1
+Does not have proper display of errors, but it catches them....
+
+BE has proper errors that the client can understand like:
+
+`{"errors":{"email":"is invalid","phone":"12321321 is not a valid 10 digit number!"}}`
+
+###### 2
 
 Pagination is set to 3 to see it in action (because it hides itself when there is only 1 page)
 
