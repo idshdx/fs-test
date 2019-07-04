@@ -1,7 +1,5 @@
 const mongoose = require('mongoose'),
-    uniqueValidator = require('mongoose-unique-validator'),
-    Provider = require('../models/provider'),
-    AutoIncrement = require('mongoose-sequence')(mongoose);
+    uniqueValidator = require('mongoose-unique-validator');
 
 const ClientSchema = new mongoose.Schema({
     name: {type: String, unique: true, required: [true, "can't be blank"], index: true},
@@ -21,7 +19,5 @@ const ClientSchema = new mongoose.Schema({
 });
 
 ClientSchema.plugin(uniqueValidator, {message: 'is already taken'});
-
-ClientSchema.plugin(AutoIncrement, { id: 'clientId', inc_field: 'id'});
 
 module.exports = mongoose.model('Client', ClientSchema);
