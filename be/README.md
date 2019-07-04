@@ -44,4 +44,6 @@ API docs can be found at [http://localhost:3000/api-docs](http://localhost:3000/
 - `app/models` - This folder contains the schema definitions for our Mongoose models.
 
 Mentions:
-Does not include numeric and incrementing IDs.
++ Because of the lack of a favicon, you will get a nasty 404 dev enabled only stack trace
+when you first get the static files 
++ Does not include numeric and incrementing IDs.
