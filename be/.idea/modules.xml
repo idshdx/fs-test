@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/Documents/node-express-realworld-example-app-master/.idea/node-express-realworld-example-app-master.iml" filepath="$USER_HOME$/Documents/node-express-realworld-example-app-master/.idea/node-express-realworld-example-app-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../be/.idea/untitled2.iml" filepath="$PROJECT_DIR$/../be/.idea/untitled2.iml" />
+    </modules>
+  </component>
+</project>
