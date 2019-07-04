@@ -15,6 +15,7 @@ If you want to run the project from *here* as in root path of repo:
 + `start` - seeds data and starts the server(which has the *latest* client build)
 + `npm run start-no-seed` - starts the server with no data seed
 + `npm run start-fe` - starts only the client
++ `npm run build-fe` - builds the client app
 (or use yarn)
 
 Tips:
