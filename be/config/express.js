@@ -12,6 +12,7 @@ module.exports = function (app) {
     app.use(cors());
     app.use(compress());
     app.use(methodOverride());
-    app.use(bodyParser());
+    //app.use(bodyParser());
+    app.use(bodyParser.urlencoded({extended: false}));
     //app.use(morgan('dev'));
 };

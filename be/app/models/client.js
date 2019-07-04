@@ -13,11 +13,14 @@ const ClientSchema = new mongoose.Schema({
         //     message: '{VALUE} is not a valid 10 digit number!'
         // }
         min: [1000000000, '{VALUE} is not a valid 10 digit number!'],
-        max: [9999999999, '{VALUE} is not a valid 10 digit number!']
+        max: [9999999999, '{VALUE} is not a valid 10 digit number!'],
+        index: true
         },
     providers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Provider' }],
 });
 
 ClientSchema.plugin(uniqueValidator, {message: 'is already taken'});
+
+mongoose.set('useCreateIndex', true);
 
 module.exports = mongoose.model('Client', ClientSchema);

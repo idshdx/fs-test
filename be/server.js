@@ -5,7 +5,7 @@ const express = require('express'),
 
 
 // Bootstrap database
-mongoose.connect(config.db);
+mongoose.connect(config.db, {useNewUrlParser: true});
 
 // Configure server
 const app = express();
