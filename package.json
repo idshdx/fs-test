@@ -7,7 +7,7 @@
   },
   "scripts": {
     "install": "(cd ./be/ && npm install)",
-    "install-all": "(cd ./be/ && npm install && cd ./../fe && npm install",
+    "install-all": "(cd ./be/ && npm install && cd ./../fe && npm install)",
     "start": "node ./be/config/seed.js && node ./be/server.js",
     "start-no-seed": "node ./be/server.js",
     "start-fe": "cd ./fe && \"$npm_execpath\" run serve"

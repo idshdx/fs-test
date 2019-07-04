@@ -11,10 +11,10 @@ Express + Vue
 
 If you want to run the project from *here* as in root path of repo:
 + `npm install` - install server libs
-+ `npm install-all` - installs all libs(if you want to run the client separate)
++ `npm run install-all` - installs all libs(if you want to run the client separate)
 + `start` - seeds data and starts the server(which has the *latest* client build)
-+ `start-no-seed` - starts the server with no data seed
-+ `start-fe` - starts only the client
++ `npm run start-no-seed` - starts the server with no data seed
++ `npm run start-fe` - starts only the client
 (or use yarn)
 
 Tips:
