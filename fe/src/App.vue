@@ -19,4 +19,9 @@
     a, input[type='checkbox'] {
         cursor: pointer;
     }
+    @media (min-width: 576px) {
+        .modal-dialog {
+            max-width: 800px !important;
+        }
+    }
 </style>

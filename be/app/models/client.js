@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
     uniqueValidator = require('mongoose-unique-validator'),
-    autoIncrement = require('mongoose-auto-increment'),
-    Provider = require('../models/provider');
+    Provider = require('../models/provider'),
+    AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const ClientSchema = new mongoose.Schema({
     name: {type: String, unique: true, required: [true, "can't be blank"], index: true},
@@ -17,11 +17,11 @@ const ClientSchema = new mongoose.Schema({
         min: [1000000000, '{VALUE} is not a valid 10 digit number!'],
         max: [9999999999, '{VALUE} is not a valid 10 digit number!']
         },
-    providers: [{ type: Number, ref: 'Provider' }],
+    providers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Provider' }],
 });
 
 ClientSchema.plugin(uniqueValidator, {message: 'is already taken'});
 
-ClientSchema.plugin(autoIncrement.plugin, { model: 'Client', field: 'id', startAt: 1 });
+ClientSchema.plugin(AutoIncrement, { id: 'clientId', inc_field: 'id'});
 
 module.exports = mongoose.model('Client', ClientSchema);

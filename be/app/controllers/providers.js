@@ -1,8 +1,6 @@
 const router = require('express').Router(),
     mongoose = require('mongoose'),
-    Provider = require('../models/provider'),
-    clientExports = require('./clients'),
-    excludeFields = {'_id': false, '__v': false}; // because removeFields does not work in all instances
+    Provider = require('../models/provider');
 
 
 // Looks like its a swagger jsdocs bug when using 'allOf'...
@@ -62,7 +60,7 @@ router.get('/provider', function (req, res, next) {
     }
 
     Promise.all([
-        Provider.find({}, excludeFields)
+        Provider.find()
             .limit(Number(limit))
             .skip(Number(offset))
             .exec(),
@@ -108,9 +106,9 @@ router.post('/provider', function (req, res, next) {
     const provider = new Provider(req.body.provider);
 
     return provider.save().then(function (provider) {
-        provider = clientExports.removeFields(provider);
 
         return res.json({provider: provider});
+
     }).catch(next);
 });
 
@@ -139,7 +137,7 @@ router.post('/provider', function (req, res, next) {
 router.get('/provider/:id', function (req, res, next) {
     const id = req.params.id;
 
-    Provider.findById(id, excludeFields)
+    Provider.findById(id)
         .then(function (provider) {
             if (!provider)  return res.sendStatus(400);
 
@@ -180,11 +178,9 @@ router.get('/provider/:id', function (req, res, next) {
 router.put('/provider/:id', function (req, res, next) {
     const id = req.params.id;
 
-    Provider.findOneAndUpdate({id: id}, req.body.provider, {new: true})
+    Provider.findOneAndUpdate({_id: id}, req.body.provider, {new: true})
         .then(function (provider) {
             if (!provider) return res.sendStatus(400);
-
-            provider = clientExports.removeFields(provider);
 
             return res.json({provider: provider});
 

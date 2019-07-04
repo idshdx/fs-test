@@ -1,14 +1,9 @@
 const seeder = require('mongoose-seed'),
     env = process.env.NODE_ENV || 'development',
-    config = require('./config')[env],
-    mongoose = require('mongoose'),
-    autoIncrement = require('mongoose-auto-increment');
+    config = require('./config')[env];
 
 // Connect to MongoDB via Mongoose
 seeder.connect(config.db, function() {
-
-    const connection = mongoose.createConnection(config.db);
-    autoIncrement.initialize(connection);
 
     // Load Mongoose models
     seeder.loadModels([
@@ -34,7 +29,7 @@ const data = [
             {
                 'name': 'Client 1',
                 'email': 'client@client.ro',
-                'phone': 1234567899
+                'phone': 1234567899,
             },
             {
                 'name': 'Funny client',
@@ -68,7 +63,7 @@ const data = [
                 'name': 'Provider 2',
             },
             {
-                'name': 'Provider NextGen',
+                'name': 'Provider New',
             }
         ]
     }

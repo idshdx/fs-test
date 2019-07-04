@@ -5,7 +5,6 @@
 + Basic express config libraries (cors, helmet, morgan, etc)
 + Swagger + swagger jsdocs
 + Mongoose
-+ Mongoose Auto Increment for numeric and incrementing IDs
 + Mongoose UniqueValidator
  for handling unique validation errors in Mongoose. Mongoose only handles validation at the document level, so a unique index across a collection will throw an exception at the driver level. The mongoose-unique-validator plugin helps us by formatting the error like a normal mongoose ValidationError.
 
@@ -43,3 +42,6 @@ API docs can be found at [http://localhost:3000/api-docs](http://localhost:3000/
 - `config/` - This folder contains express configurations, both with the route config
 - `app/controllers` - This folder contains the route definitions for our API.
 - `app/models` - This folder contains the schema definitions for our Mongoose models.
+
+Mentions:
+Does not include numeric and incrementing IDs.

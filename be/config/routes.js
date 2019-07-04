@@ -22,7 +22,7 @@ module.exports = function (app) {
     // Client
     //=============================
     const client = require('../app/controllers/clients');
-    app.use(client.router);
+    app.use(client);
 
     //=============================
     // Providers

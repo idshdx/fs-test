@@ -18,10 +18,10 @@ import {
 
 const initialState = {
     client: {
-        id: "",
-        name: "",
-        email: "",
-        phone: "",
+        _id: undefined,
+        name: undefined,
+        email: undefined,
+        phone: undefined,
         providers: []
     },
     clients: [],
@@ -46,8 +46,8 @@ export const actions = {
         context.commit(SET_CLIENT, client);
     },
     [CLIENT_SAVE]({state}) {
-        if (state.client.id) {
-            return ClientsService.update(state.client.id, state.client)
+        if (state.client._id) {
+            return ClientsService.update(state.client._id, state.client)
                 .catch(error => {
                     throw new Error(error);
                 });
@@ -59,7 +59,7 @@ export const actions = {
         }
     },
     async [CLIENT_DELETE](context, payload) {
-        await ClientsService.destroy(payload.id);
+        await ClientsService.destroy(payload._id);
         context.commit(CLIENT_REMOVE, payload);
     },
     [CLIENT_EDIT_ADD_PROVIDER](context, provider) {
@@ -87,14 +87,14 @@ export const mutations = {
         state.clientsCount++;
     },
     [CLIENT_REMOVE](state, client) {
-        state.clients = state.clients.filter(c => c.id !== client.id);
+        state.clients = state.clients.filter(c => c._id !== client._id);
         state.clientsCount--;
     },
     [CLIENT_PROVIDER_ADD](state, provider) {
         state.client.providers = state.client.providers.concat([provider]);
     },
     [CLIENT_PROVIDER_REMOVE](state, provider) {
-        state.client.providers = state.client.providers.filter(p => p.id !== provider.id);
+        state.client.providers = state.client.providers.filter(p => p._id !== provider._id);
     },
     [SET_CLIENT](state, client) {
         state.client = client;

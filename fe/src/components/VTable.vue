@@ -42,7 +42,7 @@
                     </tbody>
                 </table>
 
-                <VClient :show-client="showClient" :close-client="closeClientRequest"></VClient>
+                <VClient :show-client="showClient" :modal-title ="modalTitle" :close-client="closeClientRequest"></VClient>
 
                 <VPagination :pages="pages" :currentPage.sync="currentPage"/>
             </div>
@@ -75,7 +75,8 @@
             return {
                 currentPage: 1,
                 selectedClient: {},
-                showClient: false
+                showClient: false,
+                modalTitle: ""
             };
         },
         computed: {
@@ -114,11 +115,13 @@
             },
             addClient() {
                 this.$store.commit(RESET_CLIENT_STATE);
+                this.modalTitle = 'New Client';
                 this.showClient = true;
             },
             editClient(client) {
-                this.showClient = true;
                 this.$store.dispatch(SET_CLIENT_TO_UPDATE, client);
+                this.modalTitle = 'Edit Client';
+                this.showClient = true;
             },
             fetchClients() {
                 this.$store.dispatch(FETCH_CLIENTS, this.tableConfig);

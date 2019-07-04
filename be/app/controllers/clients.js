@@ -1,16 +1,7 @@
 const router = require('express').Router(),
     mongoose = require('mongoose'),
     Client = require('../models/client'),
-    Provider = require('../models/provider'),
-    excludeFields = {'_id': false, '__v': false}; // this one is faster than invoking the function below. Used in most cases.
-    // Yeah, this should be part of a 'helper' namespace and exported from there
-
-function removeFields(mongoObject) {
-    mongoObject.set('_id', undefined, {strict: false} );
-    mongoObject.set('__v', undefined, {strict: false} );
-
-    return mongoObject;
-}
+    Provider = require('../models/provider');
 
 // Looks like its a swaggerdocs bug when using 'allOf'
 
@@ -84,11 +75,10 @@ router.get('/client', function (req, res, next) {
     }
 
     return Promise.all([
-        Client.find({}, excludeFields)
+        Client.find()
             .limit(Number(limit))
             .skip(Number(offset))
-            .sort({createdAt: 'desc'})
-            .populate('providers', 'id')
+            .populate('providers')
             .exec(),
         Client.count(query).exec(),
     ]).then(function (results) {
@@ -132,7 +122,6 @@ router.post('/client', function (req, res, next) {
     const client = new Client(req.body.client);
 
     client.save().then(function (client) {
-        client = removeFields(client);
 
         return res.json({client: client});
 
@@ -164,7 +153,7 @@ router.post('/client', function (req, res, next) {
 router.get('/client/:id', function (req, res, next) {
     const id = req.params.id;
 
-    Client.findById(id, excludeFields).populate('providers', 'name')
+    Client.findById(id).populate('providers')
         .then(function (client) {
             if (!client) return res.sendStatus(400);
 
@@ -205,11 +194,11 @@ router.get('/client/:id', function (req, res, next) {
 router.put('/client/:id', function (req, res, next) {
     const id = req.params.id;
 
-    Client.findOneAndUpdate({id: id}, req.body.client, {new: true})
+    if (! req.body.client) return res.sendStatus(400);
+
+    Client.findOneAndUpdate({_id: id}, req.body.client, {new: true})
         .then(function (client) {
             if (!client) return res.sendStatus(400);
-
-            client = removeFields(client);
 
             return res.json({client: client});
 
@@ -240,7 +229,7 @@ router.put('/client/:id', function (req, res, next) {
 router.delete('/client/:id', function (req, res, next) {
     const id = req.params.id;
 
-    Client.findById({id: id}).then(function (client) {
+    Client.findById({_id: id}).then(function (client) {
         if (!client)  return res.sendStatus(400);
 
         return client.delete().then(function () {
@@ -251,7 +240,4 @@ router.delete('/client/:id', function (req, res, next) {
 
 });
 
-module.exports = {
-    router,
-    removeFields // todo: 'helper' namespace
-};
+module.exports = router;

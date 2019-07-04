@@ -24,13 +24,13 @@
 
                                 <div class="form-group reset-flex">
                                     <label>Providers</label>
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <input class="form-control" v-model="newProviderName">
                                         <ul class="list-group">
                                             <li class="list-group-item" v-for="provider of providers" :provider="provider">
                                                 <input type="checkbox" :checked="clientHasProvider(provider)"
                                                        @change="addOrRemoveProvider(provider)">
-                                                <p>{{provider.name}}</p>
+                                                <span>{{provider.name}}</span>
 
                                                 <span>
                                             <a @click="editProvider(provider)">
@@ -90,6 +90,10 @@
                 type: Boolean,
                 required: true
             },
+            modalTitle: {
+                type: String,
+                required: true
+            },
             closeClient: {},
         },
         data() {
@@ -102,12 +106,6 @@
         },
         computed: {
             ...mapGetters(["providers", "client"]),
-            modalTitle() {
-                // check client state if a client is set. If its set, its an edit action.
-                return this.client.name ?
-                    "Edit Client" :
-                    "Create Client";
-            }
         },
         mounted() {
             this.fetchProviders();
@@ -126,7 +124,7 @@
                     this.$store.dispatch(CLIENT_EDIT_ADD_PROVIDER, provider);
             },
             clientHasProvider(provider) {
-                return this.client.providers.some(element => element.id === provider.id);
+                return this.client.providers.some(element => element._id === provider._id);
             },
             fetchProviders() {
                 this.$store.dispatch(FETCH_PROVIDERS);

@@ -15,8 +15,8 @@ import {
 
 const initialState = {
     provider: {
-        id: "",
-        name: ""
+        _id: undefined,
+        name: undefined
     },
     providers: []
 };
@@ -40,14 +40,14 @@ export const actions = {
         context.commit(PROVIDER_ADD, data.provider);
     },
     async [PROVIDER_DESTROY](context, payload) {
-        await ProvidersService.destroy(payload.id)
+        await ProvidersService.destroy(payload._id)
             .catch(error => {
                 throw new Error(error);
             });
         context.commit(PROVIDER_REMOVE, payload);
     },
     async [PROVIDER_EDIT](context, payload) {
-        await ProvidersService.update(payload.id, payload)
+        await ProvidersService.update(payload._id, payload)
             .catch(error => {
                 throw new Error(error);
             });
@@ -66,7 +66,7 @@ export const mutations = {
         state.providers = state.providers.concat([provider]);
     },
     [PROVIDER_REMOVE](state, provider) {
-        state.providers = state.providers.filter(p => p.id !== provider.id);
+        state.providers = state.providers.filter(p => p._id !== provider._id);
     },
     [SET_PROVIDER](state, provider) {
         state.provider = provider;

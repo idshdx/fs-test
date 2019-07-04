@@ -1,13 +1,11 @@
 const express = require('express'),
     env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env],
-    mongoose = require('mongoose'),
-    autoIncrement = require('mongoose-auto-increment');
+    mongoose = require('mongoose');
+
 
 // Bootstrap database
 mongoose.connect(config.db);
-const connection = mongoose.createConnection(config.db);
-autoIncrement.initialize(connection);
 
 // Configure server
 const app = express();
