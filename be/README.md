@@ -13,6 +13,10 @@
 * [Node.js](http://nodejs.org/download/) (with npm or yarn)
 * [MongoDB](http://www.mongodb.org/downloads)
 
+Set the NODE_ENV to be either 'development' or 'production'
+````
+EXPORT NODE_ENV=development
+````
 ### Installation:
 
 ```bash

@@ -19,6 +19,11 @@ If you want to run the project from *here* as in root path of repo:
 (or use yarn)
 
 Tips:
+ 
++ Set the NODE_ENV to be either 'development' or 'production'
+````
+EXPORT NODE_ENV=development
+````
 + If you do changes at the client and want it served from the Express server, dont forget to build again.
 Building the client will *first remove the existing build* and then move the assets in the plublic folder
 

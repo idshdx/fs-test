@@ -8,8 +8,8 @@
   "scripts": {
     "install": "(cd ./be/ && npm install)",
     "install-all": "(cd ./be/ && npm install && cd ./../fe && npm install)",
-    "start": "(cd ./be && node ./config/seed.js && node ./server.js)",
-    "start-no-seed": "(cd ./be/ && node ./server.js)",
+    "start": "(cd ./be && cross-env NODE_ENV=development node ./config/seed.js && node ./server.js)",
+    "start-no-seed": "(cd ./be/ && cross-env NODE_ENV=development node ./server.js)",
     "start-fe": "(cd ./fe && \"$npm_execpath\" run serve)",
     "build-fe": "(cd ./fe && \"$npm_execpath\" run build)"
   }
