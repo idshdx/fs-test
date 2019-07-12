@@ -6,8 +6,8 @@
     "name": "Andrei Botez"
   },
   "scripts": {
-    "start": "(cross-env NODE_ENV=development node config/seed.js && node server.js)",
-    "start-no-seed": "(cross-env NODE_ENV=development node server.js)"
+    "start": "cross-env NODE_ENV=development \"node config/seed.js && node server.js\"",
+    "start-no-seed": "cross-env NODE_ENV=development \"node server.js\""
   },
   "dependencies": {
     "body-parser": "^1.19.0",
